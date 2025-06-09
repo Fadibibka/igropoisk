@@ -15,7 +15,16 @@ router = APIRouter(
     prefix="/api/games",
     tags=["Games"]
 )
+from src.services.games import search_games
 
+@router.get("/search", response_model=List[GameOut])
+async def search_game_by_name(
+    query: str,
+    db: AsyncSession = Depends(get_db)
+):
+    if not query.strip():
+        return []
+    return await search_games(query, db)
 
 @router.get("/", response_model=List[GameOut])
 async def fetch_games(

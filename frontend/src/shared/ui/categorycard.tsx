@@ -26,7 +26,7 @@ export default function CategoryCard({ title, images, genreId }: Props) {
           )}
         </div>
         
-        <h2 className="font-display text-2xl pt-10">{title}</h2>
+        <h2 className="font-display text-xl pt-10">{title}</h2>
       </div>
       <div className="self-end flex items-start justify-start pt-2 pl-3 bg-black w-18 h-14 justify-self-end rounded-2xl translate-x-4 translate-y-6">
         <img className="w-8 h-6" src={arrowsvg} alt="Стрелка" />

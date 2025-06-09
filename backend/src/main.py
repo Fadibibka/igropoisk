@@ -69,4 +69,12 @@ app.include_router(admin.router)
 app.include_router(recommendation.router)
 app.include_router(upload_router)
 frontend_build_dir = os.path.join(backend_dir, "..", "frontend", "dist") 
-app.mount("/", StaticFiles(directory=frontend_build_dir, html=True), name="frontend")
+from fastapi.responses import FileResponse
+
+# Это нужно оставить — для /assets/ и других файлов
+app.mount("/assets", StaticFiles(directory=os.path.join(frontend_build_dir, "assets")), name="assets")
+
+@app.get("/{full_path:path}")
+async def serve_spa(full_path: str):
+    index_path = os.path.join(frontend_build_dir, "index.html")
+    return FileResponse(index_path)

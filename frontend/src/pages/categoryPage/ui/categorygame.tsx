@@ -1,7 +1,8 @@
 import VideoPlayer from '@shared/widgets/player/player';
 import { Game } from '@api/categoryPage/getTopGamesByGenre';
 import ellipse from '@shared/assets/svg/Ellipse.svg'
-import favorite from '@shared/assets/svg/favorite.svg'
+import Favorite from '@shared/widgets/addTo/favoriteButton'
+import { Link } from 'react-router-dom';
 
 interface Props {
   game: Game;
@@ -25,12 +26,18 @@ export default function Categorygame({ game }: Props) {
             <div className="bg-purple relative w-1/2 rounded-r-xl z-10 pl-10 pr-6 py-12 flex flex-col space-y-6">
                 {logo && (
                 <div className="flex items-start">
-                    <img 
+                  <Link to={`/game/${game?.game_id}`}>
+                                      <img 
                     src={logo.material_url} 
                     alt={game.title}
                     className="rounded-xl object-cover -translate-x-20"
                     />
-                    <img className="-translate-x-25.5 -translate-y-4" src={favorite} alt="favorite icon" />
+                  </Link>
+
+                    <div className='-translate-x-25.5 -translate-y-4'>
+                      <Favorite gameId={game?.game_id || 0} />
+                    </div>
+
                 </div>
                 )}
 

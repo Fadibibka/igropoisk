@@ -48,3 +48,9 @@ export const getAllGames = async (params?: GetAllGamesParams) => {
   });
   return response.data;
 };
+export const getSearchedGames = async (query: string) => {
+  const response = await axios.get<Game[]>(`/api/games/search`, {
+    params: { query }
+  });
+  return response.data;
+};

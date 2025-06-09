@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllGamesByGenre } from "@api/categoryPage/getAllGamesByGenre";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 interface Game {
   game_id: number;
   title: string;
@@ -55,12 +55,9 @@ const getGameImage = (game: Game): string => {
   const screenshot = game.materials.find(m => m.material_type === 'screenshot');
   return (logo?.material_url || screenshot?.material_url || '');
 };
-
 const renderBlock = (index: number) => {
-  // Если нет игр вообще, не рендерим
   if (games.length === 0) return null;
 
-  // Создаем массив из 7 игр, дублируя существующие при необходимости
   const blockGames = [];
   for (let i = 0; i < 8; i++) {
     const gameIndex = i % games.length;
@@ -71,71 +68,79 @@ const renderBlock = (index: number) => {
     <div key={index} className="grid grid-cols-4 grid-rows-3 gap-6 mt-12">
       {/* Первый ряд */}
       <div className="col-span-2 row-span-1">
-        
-        <img
-          className="w-full h-full object-cover rounded-xl"
-          src={getGameImage(blockGames[0])}
-          alt={blockGames[0].title}
-        />
+        <Link to={`/game/${blockGames[0].game_id}`}>
+          <img
+            className="w-full h-full object-cover rounded-xl"
+            src={getGameImage(blockGames[0])}
+            alt={blockGames[0].title}
+          />
+        </Link>
       </div>
-      
+
       {/* Второй ряд */}
       <div className="col-span-2 row-span-2 flex flex-col gap-6">
-        <img
-          className="w-full h-full object-cover rounded-xl"
-          src={getGameImage(blockGames[1])}
-          alt={blockGames[1].title}
-        />
-        <div className='flex space-x-6'>
-          <div className="">
+        <Link className="w-full h-full object-cover rounded-xl" to={`/game/${blockGames[1].game_id}`}>
+          <img
+            className="w-full h-full object-cover rounded-xl"
+            src={getGameImage(blockGames[1])}
+            alt={blockGames[1].title}
+          />
+        </Link>
+        <div className="flex space-x-6">
+          <Link  to={`/game/${blockGames[2].game_id}`}>
             <img
-              className="w-full h-full object-cover rounded-xl"
+              className="h-full object-cover rounded-xl"
               src={getGameImage(blockGames[2])}
               alt={blockGames[2].title}
             />
-          </div>
-          <div className="">
+          </Link>
+          <Link to={`/game/${blockGames[3].game_id}`}>
             <img
-              className="w-full h-full object-cover rounded-xl"
+              className=" h-full object-cover rounded-xl"
               src={getGameImage(blockGames[3])}
               alt={blockGames[3].title}
             />
-          </div>
+          </Link>
         </div>
       </div>
-      
+
       {/* Третий ряд */}
       <div className="col-span-2 row-span-1">
-        <img
-          className="w-full h-full object-cover rounded-xl"
-          src={getGameImage(blockGames[4])}
-          alt={blockGames[4].title}
-        />
+        <Link to={`/game/${blockGames[4].game_id}`}>
+          <img
+            className="w-full h-full object-cover rounded-xl"
+            src={getGameImage(blockGames[4])}
+            alt={blockGames[4].title}
+          />
+        </Link>
       </div>
-      
-      {/* Четвертый ряд */}
+
+      {/* Четвёртый ряд */}
       <div className="col-span-2 flex gap-6">
-        <div className="">
+        <Link to={`/game/${blockGames[5].game_id}`}>
           <img
             className="w-full h-full object-cover rounded-xl"
             src={getGameImage(blockGames[5])}
             alt={blockGames[5].title}
           />
-        </div>
-        <div className="">
+        </Link>
+        <Link to={`/game/${blockGames[6].game_id}`}>
           <img
             className="w-full h-full object-cover rounded-xl"
             src={getGameImage(blockGames[6])}
             alt={blockGames[6].title}
           />
-        </div>
+        </Link>
       </div>
+
       <div className="col-span-2">
-      <img
+        <Link to={`/game/${blockGames[7].game_id}`}>
+          <img
             className="w-full h-full object-cover rounded-xl"
             src={getGameImage(blockGames[7])}
             alt={blockGames[7].title}
           />
+        </Link>
       </div>
     </div>
   );

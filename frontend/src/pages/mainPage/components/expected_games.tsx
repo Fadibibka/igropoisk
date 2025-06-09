@@ -6,10 +6,10 @@ import CountdownTimer  from './timer'
 
 export default function Main_games() {
     const games = [
-      { title: 'DOOM: THE DARK AGES', image: img2, releaseDate: '2025-11-11' },
-      { title: 'DUNE: AWAKING', image: img3, releaseDate: '2025-11-11' },
-      { title: 'DEATH STRANDING 2', image: img4, releaseDate: '2025-11-11' },
-      { title: 'CLAIR OBSCURE', image: img5, releaseDate: '2025-11-11' },
+      { title: 'DOOM: THE DARK AGES', image: img2, releaseDate: '2025-10-03' },
+      { title: 'DUNE: AWAKING', image: img3, releaseDate: '2025-11-12' },
+      { title: 'DEATH STRANDING 2', image: img4, releaseDate: '2025-08-11' },
+      { title: 'CLAIR OBSCURE', image: img5, releaseDate: '2025-07-07' },
     ];
       return (
         <section className="container mt-32">

@@ -11,6 +11,19 @@ from src.models.models import Game, GameMaterial, GamePlatform, Genre, UserRatin
 HERO_GAME_IDS = [29, 34, 36, 38, 28]
 POPULAR_GAME_IDS = [1, 4, 11, 9]
 
+async def search_games(query: str, db: AsyncSession) -> List[Game]:
+    stmt = (
+        select(Game)
+        .where(Game.title.ilike(f"%{query}%"))  # регистронезависимый поиск
+        .options(
+            selectinload(Game.materials),
+            selectinload(Game.genres)
+        )
+        .order_by(Game.release_date.desc())
+        .limit(20)
+    )
+    result = await db.execute(stmt)
+    return result.scalars().unique().all()
 
 async def get_hero_games(db: AsyncSession):
     result = await db.execute(
