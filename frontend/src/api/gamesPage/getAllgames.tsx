@@ -37,7 +37,7 @@ export interface GetAllGamesParams {
 }
 
 export const getAllGames = async (params?: GetAllGamesParams) => {
-  const response = await axios.get<Game[]>("/api/games", { 
+  const response = await axios.get<Game[]>("/api/games/", { 
     params: {
       ...params,
       // Преобразуем массивы в строки для корректной передачи в URL
