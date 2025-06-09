@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    // "incremental": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@img/*": ["public/img/*"],
+      "@toolkit/*":["redux_tollkit/*"],
+      "@reduxApi/*":["redux_tollkit/api/*"],
+      "@reduxSlice/*":["redux_tollkit/slices/*"],
+      "@api/*":["src/api/*"],
+      "@shared/*":["src/shared/*"],
+      "@funcCp/*":["src/funcCp/*"],
+      "@pages/*":["src/pages/*"]
+
+    },
+
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": ["react"],
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+}
